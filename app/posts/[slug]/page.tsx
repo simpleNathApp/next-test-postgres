@@ -1,23 +1,25 @@
 import prisma from "@/lib/db";
-import { unstable_cache as cache } from "next/cache";
+//import { unstable_cache as cache } from "next/cache";
 
-const getCachedPost = cache((slug: string) => {
+/* const getCachedPost = cache((slug: string) => {
   return prisma.post.findUnique({
     where: {
       slug: slug, // Replace with the desired post ID
     },
     
   })
-})
+}) */
 
-const SinglePostPage = async ({ params }: { params: { slug: string }}) => {
+
+export default async function SinglePostPage({ params }: { params: { slug: string } }) {
    
-  /* const post = await prisma.post.findUnique({
+   const post = await prisma.post.findUnique({
     where: {
       slug: params.slug, // Replace with the desired post ID
     },
-  }); */
-  const post = await getCachedPost(params.slug); // Replace with the desired post ID
+    
+  }); 
+  //const post = await getCachedPost(params.slug); // Replace with the desired post ID
 
   return (
     <div className="flex flex-col gap-8 items-center pt-16 text-center">
@@ -27,5 +29,3 @@ const SinglePostPage = async ({ params }: { params: { slug: string }}) => {
     </div>
   );
 };
-
-export default SinglePostPage;
