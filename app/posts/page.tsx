@@ -13,35 +13,42 @@ const PostsPage = async () => {
       posts: true,
     }
   });
-
-const userPostsLength =  user?.posts.length;
   
   return (
-
     <div className="flex flex-col gap-8 items-center pt-16 justify-center align-center">
-      <h1 className='text-3xl font-semibold'>All Posts ({userPostsLength ? userPostsLength : 0})</h1>
+      <h1 className="text-3xl font-semibold">
+        All Posts ({user?.posts.length})
+      </h1>
 
       <ul className="flex flex-col gap-4 border-t border-b border-black/10 py-4 leading-8">
-        { user?.posts.map((post) => {
-          return <li key={post.id}  className="flex items-center gap-4 justify-between px-5">
-        <Link href={`/posts/${post.slug}`}className="text-blue-500 hover:underline">
-            {post.title}
-          </Link>
-        </li> 
-        })
-        }   
+        {user?.posts.map((post) => {
+          return (
+            <li
+              key={post.id}
+              className="flex items-center gap-4 justify-between px-5"
+            >
+              <Link
+                href={`/posts/${post.slug}`}
+                className="text-blue-500 hover:underline"
+              >
+                {post.title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
 
-      <form 
+      <form
         action={createPost}
-        className='flex flex-col gap-4 border-t border-b border-black/10 py-4 leading-8 px-5 w-[300px]'>
-        <input 
+        className="flex flex-col gap-4 border-t border-b border-black/10 py-4 leading-8 px-5 w-[300px]"
+      >
+        <input
           type="text"
           name="title"
-          placeholder="Title" 
+          placeholder="Title"
           className="border border-black/10 rounded-md p-2 "
         />
-        <textarea 
+        <textarea
           name="content"
           rows={5}
           placeholder="Content"
@@ -49,14 +56,14 @@ const userPostsLength =  user?.posts.length;
           id=""
         />
         <button
-          type='submit' 
-          className='bg-blue-500 text-white rounded-md p-2 mt-2'
+          type="submit"
+          className="bg-blue-500 text-white rounded-md p-2 mt-2"
         >
           Create Post
         </button>
       </form>
     </div>
-  )
+  );
 }
 
 export default PostsPage
