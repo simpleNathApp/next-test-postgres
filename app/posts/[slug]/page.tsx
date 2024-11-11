@@ -1,5 +1,6 @@
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
+import { Post } from "@prisma/client";
 //import { unstable_cache as cache } from "next/cache";
 //import { cache } from "@/lib/cache";
 
@@ -13,7 +14,7 @@ import { notFound } from "next/navigation";
   */
  
 
- export default async function SinglePostPage({ params })  {
+ export default async function SinglePostPage({ params }: Post)  {
 
    const { slug } = await params;
      const post = await prisma.post.findUnique({
