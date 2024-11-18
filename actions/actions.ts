@@ -5,7 +5,6 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
 import { revalidatePath } from "next/cache"
 
 export async function createPost(formData: FormData) {
-
     try {
         
         await prisma.post.create({
